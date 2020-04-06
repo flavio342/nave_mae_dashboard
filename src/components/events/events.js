@@ -1,5 +1,5 @@
 export default {
-  name: "lines",
+  name: "customers",
   components: {},
   props: [],
   data() {
@@ -25,6 +25,25 @@ export default {
           }
         },
         {
+          key: "photo",
+          label: "Foto",
+          table_options: {
+            sortable: false,
+            show: true,
+            filter: false
+          },
+          save_options: {
+            read_only: false,
+            type: "image",
+            mask: null,
+            options: null,
+            filter: null,
+            default: "",
+            url: "",
+            get_foreign: ""
+          }
+        },
+        {
           key: "name",
           label: "Nome",
           table_options: {
@@ -44,8 +63,8 @@ export default {
           }
         },
         {
-          key: "exhibition_number",
-          label: "Ordem de Exibição",
+          key: "date",
+          label: "Data",
           table_options: {
             sortable: true,
             show: true,
@@ -53,7 +72,7 @@ export default {
           },
           save_options: {
             read_only: false,
-            type: "number",
+            type: "text",
             mask: null,
             options: null,
             filter: null,
@@ -66,13 +85,32 @@ export default {
           key: "description",
           label: "Descrição",
           table_options: {
-            sortable: false,
-            show: false,
-            filter: false
+            sortable: true,
+            show: true,
+            filter: true
           },
           save_options: {
             read_only: false,
-            type: "textarea",
+            type: "text",
+            mask: null,
+            options: null,
+            filter: null,
+            default: "",
+            url: "",
+            get_foreign: ""
+          }
+        },
+        {
+          key: "class",
+          label: "Turma",
+          table_options: {
+            sortable: true,
+            show: true,
+            filter: true
+          },
+          save_options: {
+            read_only: false,
+            type: "text",
             mask: null,
             options: null,
             filter: null,
@@ -83,15 +121,15 @@ export default {
         }
       ],
       table_info: {
-        title: "Linhas",
-        title_singular: "Linha",
+        title: "Eventos",
+        title_singular: "Evento",
         objs: null,
         fields: [],
         filterOnOptions: [{ value: "", text: "" }],
         options: {
-          add: "lines",
-          delete: "delete_lines",
-          edit: "edit_lines"
+          add: null,
+          delete: "delete_events",
+          edit: null
         },
         saveFields: []
       }
@@ -155,7 +193,7 @@ export default {
   },
   methods: {
     get_objs() {
-      this.axios.get("http://127.0.0.1:5000/" + "lines").then(
+      this.axios.get(process.env.VUE_APP_API_URL + "events").then(
         res => {
           this.table_info.objs = res.data;
         },
@@ -169,7 +207,7 @@ export default {
     get_foreigns(url) {
       return new Promise(resolve => {
         this.get_token();
-        this.axios.get("http://127.0.0.1:5000/" + url).then(
+        this.axios.get(process.env.VUE_APP_API_URL + url).then(
           res => {
             let foreigns = [];
             for (let i = 0; i < res.data.length; i++) {

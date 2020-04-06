@@ -38,49 +38,124 @@ export default {
           }
         },*/
         {
-          href: "/users",
+          href: "",
           title: "Usuários",
+          ref: "users",
           icon: {
             element: "font-awesome-icon",
             class: "side-bar-icon",
             attributes: {
               icon: "users"
             }
-          }
-        },
-        {
-          href: "",
-          title: "Loja",
-          ref: "store",
-          icon: {
-            element: "font-awesome-icon",
-            class: "side-bar-icon",
-            attributes: {
-              icon: "store-alt"
-            }
           },
           child: [
             {
-              href: "/lines",
-              title: "Linhas",
-              ref: "line",
+              href: "/",
+              title: "Coordenadores",
+              ref: "managers",
               icon: {
                 element: "font-awesome-icon",
                 class: "side-bar-sub-icon",
                 attributes: {
-                  icon: "tag"
+                  icon: "stamp"
                 }
               }
             },
             {
-              href: "/products",
-              title: "Produtos",
-              ref: "product",
+              href: "/students",
+              title: "Estudantes",
+              ref: "students",
               icon: {
                 element: "font-awesome-icon",
                 class: "side-bar-sub-icon",
                 attributes: {
-                  icon: "tshirt"
+                  icon: "user-graduate"
+                }
+              }
+            },
+            {
+              href: "/relatives",
+              title: "Familiares",
+              ref: "relatives",
+              icon: {
+                element: "font-awesome-icon",
+                class: "side-bar-sub-icon",
+                attributes: {
+                  icon: "hand-holding-usd"
+                }
+              }
+            }
+          ]
+        },
+        {
+          href: "",
+          title: "Estruturas",
+          ref: "structures",
+          icon: {
+            element: "font-awesome-icon",
+            class: "side-bar-icon",
+            attributes: {
+              icon: "book"
+            }
+          },
+          child: [
+            {
+              href: "/institutions",
+              title: "Instituições",
+              ref: "institutions",
+              icon: {
+                element: "font-awesome-icon",
+                class: "side-bar-sub-icon",
+                attributes: {
+                  icon: "school"
+                }
+              }
+            },
+            {
+              href: "/classes",
+              title: "Turmas",
+              ref: "classes",
+              icon: {
+                element: "font-awesome-icon",
+                class: "side-bar-sub-icon",
+                attributes: {
+                  icon: "chalkboard"
+                }
+              }
+            },
+            {
+              href: "/grades",
+              title: "Notas",
+              ref: "grades",
+              icon: {
+                element: "font-awesome-icon",
+                class: "side-bar-sub-icon",
+                attributes: {
+                  icon: "star"
+                }
+              }
+            },
+            {
+              href: "/attendances",
+              title: "Presenças",
+              ref: "attendances",
+              icon: {
+                element: "font-awesome-icon",
+                class: "side-bar-sub-icon",
+                attributes: {
+                  icon: "check"
+                }
+              }
+            },
+            {
+              href: "/events",
+              title: "Eventos",
+              ref: "events",
+              icon: {
+                element: "font-awesome-icon",
+                class: "side-bar-sub-icon",
+                attributes: {
+                  icon: "calendar-week"
                 }
               }
             }

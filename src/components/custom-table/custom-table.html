@@ -63,7 +63,7 @@
     <template slot="[price]" slot-scope="data">
       {{data.value | toCurrency}}
     </template>
-    <template slot="[first_image]" slot-scope="data">
+    <template slot="[photo]" slot-scope="data">
       <div class="table-img-div">
         <img class="table-img" :src="data.value" alt="">
       </div>
@@ -150,11 +150,14 @@
                 <div class="label-item">
                   {{item.label}}
                 </div>
-                <div v-if="item.type != 'bool'" class="value-item">
+                <div v-if="item.type != 'bool' && item.type != 'image'" class="value-item">
                     {{item.value | format(item.filter) }}
                 </div>
                 <div v-if="item.type == 'bool'" class="value-item">
                     <b-form-checkbox disabled v-model="item.value"></b-form-checkbox>
+                </div>
+                <div v-if="item.type == 'image'" class="value-item">
+                  <img class="img-preview" :src="item.url" alt="">
                 </div>
               </div>
               <div v-if="!item.read_only && table_info.options.edit">

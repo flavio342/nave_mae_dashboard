@@ -48,7 +48,7 @@ export default {
     delete_selected() {
       this.progress.delete = true;
       this.axios
-        .post("http://127.0.0.1:5000/" + this.table_info.options.delete, { items: this.selected })
+        .post(process.env.VUE_APP_API_URL + this.table_info.options.delete, { items: this.selected })
         .then(
           res => {
             setTimeout(() => {
@@ -69,7 +69,11 @@ export default {
       for (let i = 0; i < this.table_info.saveFields.length; i++) {
         this.table_info.saveFields[i].value = data.item[this.table_info.saveFields[i].key];
         if (this.table_info.saveFields[i].type == "image") {
+          console.log("vem pro pai")
+          console.log(data.item)
+          console.log(data.item[this.table_info.saveFields[i].key])
           this.table_info.saveFields[i].url = data.item[this.table_info.saveFields[i].key];
+          console.log(this.table_info.saveFields[i])
         }
       }
       this.$bvModal.show("modal-save");
@@ -117,7 +121,7 @@ export default {
           c.append(this.table_info.saveFields[i].key, this.table_info.saveFields[i].value);
         }
       }
-      this.axios.post("http://127.0.0.1:5000/" + url, c).then(
+      this.axios.post(process.env.VUE_APP_API_URL + url, c).then(
         res => {
           setTimeout(() => {
             if (res.data.success) {

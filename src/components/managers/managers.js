@@ -25,6 +25,25 @@ export default {
           }
         },
         {
+          key: "photo",
+          label: "Foto",
+          table_options: {
+            sortable: false,
+            show: true,
+            filter: false
+          },
+          save_options: {
+            read_only: false,
+            type: "image",
+            mask: null,
+            options: null,
+            filter: null,
+            default: "",
+            url: "",
+            get_foreign: ""
+          }
+        },
+        {
           key: "name",
           label: "Nome",
           table_options: {
@@ -101,31 +120,6 @@ export default {
           }
         },
         {
-          key: "first_contact",
-          label: "Primeiro Contato",
-          table_options: {
-            sortable: true,
-            show: true,
-            filter: true
-          },
-          save_options: {
-            read_only: false,
-            type: "select",
-            mask: null,
-            options: [
-              { value: "Amigo/Familiar", text: "Amigo/Familiar" },
-              { value: "Facebook", text: "Facebook" },
-              { value: "Instagram", text: "Instagram" },
-              { value: "Google", text: "Google" },
-              { value: "Outro", text: "Outro" }
-            ],
-            filter: null,
-            default: "",
-            url: "",
-            get_foreign: ""
-          }
-        },
-        {
           key: "active",
           label: "Ativo",
           table_options: {
@@ -143,17 +137,36 @@ export default {
             url: "",
             get_foreign: ""
           }
-        }
+        },
+        {
+          key: "institution_name",
+          label: "Instituição",
+          table_options: {
+            sortable: true,
+            show: true,
+            filter: true
+          },
+          save_options: {
+            read_only: false,
+            type: "text",
+            mask: null,
+            options: null,
+            filter: null,
+            default: "",
+            url: "",
+            get_foreign: ""
+          }
+        },
       ],
       table_info: {
-        title: "Usuários",
-        title_singular: "Usuário",
+        title: "Coordenadores",
+        title_singular: "Coordenador",
         objs: null,
         fields: [],
         filterOnOptions: [{ value: "", text: "" }],
         options: {
           add: null,
-          delete: "delete_customers",
+          delete: "delete_managers",
           edit: null
         },
         saveFields: []
@@ -218,7 +231,7 @@ export default {
   },
   methods: {
     get_objs() {
-      this.axios.get("http://127.0.0.1:5000/" + "customers").then(
+      this.axios.get(process.env.VUE_APP_API_URL + "managers").then(
         res => {
           this.table_info.objs = res.data;
         },
@@ -232,7 +245,7 @@ export default {
     get_foreigns(url) {
       return new Promise(resolve => {
         this.get_token();
-        this.axios.get("http://127.0.0.1:5000/" + url).then(
+        this.axios.get(process.env.VUE_APP_API_URL + url).then(
           res => {
             let foreigns = [];
             for (let i = 0; i < res.data.length; i++) {
